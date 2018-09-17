@@ -1,0 +1,203 @@
+{
+
+    "tags": [{
+
+            "id": 1,
+
+            "name": "Chocolate"
+
+        },
+
+        {
+
+            "id": 2,
+
+            "name": "Protein"
+
+        },
+
+        {
+
+            "id": 3,
+
+            "name": "Pre-workout"
+
+        },
+
+        {
+
+            "id": 4,
+
+            "name": "Post-workout"
+
+        },
+
+        {
+
+            "id": 5,
+
+            "name": "Creatine"
+
+        },
+
+        {
+
+            "id": 6,
+
+            "name": "Vanila"
+
+        }
+
+    ],
+
+    "suplements": [{
+
+            "id": 1,
+
+            "name": "Chocolate protein 2kg",
+
+            "description": "Chocolate protein high quality with 5g of protein",
+
+            "pictures": [
+
+                "https://cdn.shopify.com/s/files/1/0107/9197/7018/products/G6_Prolific-2lb-ChocolatePeanutButter_540x.jpg?v=1528476555"
+
+            ],
+
+            "tags": [
+
+                1, 2
+
+            ]
+
+        },
+
+        {
+
+            "id": 2,
+
+            "name": "Vanila protein 2kg",
+
+            "description": "Vanila protein high quality with 5g of protein",
+
+            "pictures": [
+
+                "https://cdn.shopify.com/s/files/1/0107/9197/7018/products/G6_Prolific-2lb-Vanilla@2x.jpg?v=1528476559"
+
+            ],
+
+            "tags": [
+
+                6, 2
+
+            ]
+
+        }
+
+    ],
+
+    "products": [{
+
+            "id": 1,
+
+            "name": "Chocolate protein 2kg",
+
+            "description": "Chocolate protein high quality with 5g of protein Vanila protein high quality with 5g of protein",
+
+            "pictures": [
+
+                            "https://cdn.shopify.com/s/files/1/0107/9197/7018/products/G6_Prolific-2lb-ChocolatePeanutButter_540x.jpg?v=1528476555"
+
+                        ],
+
+            "price": "100$",
+
+            "discounted": "110$",
+
+            "suplements": [1],
+
+            "tags": [1, 5]
+
+        },
+
+        {
+
+            "id": 2,
+
+            "name": "Vanila protein 2kg Protein pack 4kg",
+
+            "description": "Vanila protein high quality with 5g of protein Vanila protein high quality with 5g of protein Vanila protein high quality with 5g of protein",
+
+            "pictures": [
+
+                            "https://cdn.shopify.com/s/files/1/0107/9197/7018/products/G6_Prolific-2lb-Vanilla@2x.jpg?v=1528476559"
+
+                        ],
+
+            "price": "105$",
+
+            "discounted": "115$",
+
+            "suplements": [2],
+
+            "tags": [1, 6]
+
+        },
+
+        {
+
+            "id": 3,
+
+            "name": "Protein pack 4kg  Protein pack 4kg  Protein pack 4kg",
+
+            "description": "Vanila protein high quality with 5g of protein and Chocolate protein with 5g of protein.",
+
+            "pictures": [
+
+                            "https://cdn.shopify.com/s/files/1/0107/9197/7018/products/G6_Prolific-2lb-Vanilla@2x.jpg?v=1528476559"
+
+                        ],
+
+            "price": "184$",
+
+            "discounted": "190$",
+
+            "suplements": [1, 2],
+
+            "tags": [1, 6, 5]
+
+        },
+
+                {
+
+                    "id": 4,
+
+                    "name": "Protein pack 4kg  Protein pack 4kg  Protein pack 4kg Protein pack 4kg  Protein pack 4kg",
+
+                    "description": "Vanila protein high quality with 5g of protein and Chocolate protein with 5g of protein.",
+
+                    "pictures": [
+
+                                    "https://cdn.shopify.com/s/files/1/0107/9197/7018/products/G6_Prolific-2lb-Vanilla@2x.jpg?v=1528476559"
+
+                                ],
+
+                    "price": "184$",
+
+                    "discounted": "190$",
+
+                    "suplements": [1, 2],
+
+                    "tags": [1, 6, 5]
+
+                }
+
+    ],
+
+    "most_sold": [
+
+        1, 2, 3
+
+    ]
+
+}

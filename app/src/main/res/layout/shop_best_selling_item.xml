@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <data>
+        <variable
+            name="items"
+            type="java.util.List"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/best_selling_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="16dp"
+            android:textColor="@color/darkTextHigh"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:text="Best selling"/>
+
+        <android.support.v7.widget.RecyclerView
+            app:shopBestSellingItems="@{items}"
+            android:id="@+id/rv_bestSelling"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toBottomOf="@id/best_selling_title"/>
+
+        <TextView
+            android:id="@+id/stacks_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="16dp"
+            android:text="Featured Stacks"
+            android:textColor="@color/darkTextHigh"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_bestSelling"/>
+
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

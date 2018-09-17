@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View.OnClickListener"/>
+
+        <variable
+            name="listener"
+            type="com.example.user.lesson_android_development.util.RecyclerViewClickListenerTag"/>
+
+        <variable
+            name="tag"
+            type="com.example.user.lesson_android_development.data.Tag" />
+    </data>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:onClick="@{(view)-> listener.recyclerViewTagClicked(view, tag)}"
+            >
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{tag.name}"
+                android:backgroundTint="@color/colorWhite"
+                android:textColor="@color/colorBlack"
+                android:layout_margin="15dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </android.support.constraint.ConstraintLayout>
+</layout>

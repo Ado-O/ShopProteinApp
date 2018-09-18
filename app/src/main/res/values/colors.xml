@@ -7,17 +7,10 @@
     <color name="colorWhite">#ffff</color>
     <color name="colorBlack">#000</color>
 
-    <!--toolbar-->
-    <color name="colorToolbar">#F44336</color>
-
-    <!--checkout button-->
-    <color name="colorButton">#8BC34A</color>
-
-    <!--shop-->
-    <color name="colorShop">#0000FF</color>
-
-    <!--text color-->
-    <color name="colorTextWhite">#F2F2F2</color>
+    <!--color for app-->
+    <color name="colorToolbar">#ED3F3E</color>
+    <color name="colorFloatButton">#3D5AFE</color>
+    <color name="colorCheckout">#8BC34A</color>
 
     <!--text color-->
     <color name="darkTextHigh">#DE000000</color>

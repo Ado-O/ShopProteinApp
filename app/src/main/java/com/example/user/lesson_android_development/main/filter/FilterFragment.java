@@ -51,6 +51,8 @@ public class FilterFragment extends Fragment implements RecyclerViewClickListene
 
         mBinding.setViewModel(mViewModel);
 
+      //  Log.e(TAG, String.valueOf(getArguments().getInt("id")));
+
         setupRecycle();
 
         return mBinding.getRoot();

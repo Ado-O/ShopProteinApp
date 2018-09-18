@@ -65,7 +65,6 @@ public class FilterActivity extends AppCompatActivity {
      * Fragment
      */
     private void setupFragment() {
-//TODO evernote add fragment
         FilterFragment filterFragment = (FilterFragment) getSupportFragmentManager().findFragmentById(mFilterActBinding.fragFilter.getId());
         if (filterFragment == null){
             filterFragment = FilterFragment.newInstance(getIntent().getIntExtra("id",0));

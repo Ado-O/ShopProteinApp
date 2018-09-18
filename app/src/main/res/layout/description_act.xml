@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -50,11 +49,7 @@
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/tlb"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-
-                </android.support.v7.widget.Toolbar>
-
+                    android:layout_height="wrap_content"/>
 
             </android.support.design.widget.CollapsingToolbarLayout>
 
@@ -73,24 +68,27 @@
 
                 <TextView
                     android:id="@+id/tv_des_name"
-                    android:layout_width="wrap_content"
+                    android:layout_width="360dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
                     android:layout_marginTop="20dp"
-                    android:text="@{descriptionList.title}"
+                    android:text='@{descriptionList.title, default="descriptionName"}'
                     android:textColor="@color/darkTextHigh"
                     android:textSize="20dp"
-                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.041"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <!--TODO add default databinding-->
 
                 <TextView
                     android:id="@+id/tv_des_discount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
-                    android:text="@{descriptionList.discount}"
+                    android:text='@{descriptionList.discount, default="discount"}'
                     android:textColor="@color/darkTextMedium"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_des_name" />
@@ -100,7 +98,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:text="@{descriptionList.price}"
+                    android:text='@{descriptionList.price, default="price"}'
                     android:textColor="@color/colorPrimary"
                     android:textSize="16dp"
                     app:layout_constraintLeft_toRightOf="@id/tv_des_discount"
@@ -117,30 +115,29 @@
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_des_discount" />
 
-                <LinearLayout
-                    android:id="@+id/ll_main"
+                <!--TODO in this line add receyleview-->
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_desList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:orientation="vertical"
-                    app:desc="@{descriptionList.nameDesc}"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/view_line" />
-
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/view_line"/>
 
             </android.support.constraint.ConstraintLayout>
         </android.support.v4.widget.NestedScrollView>
+
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab_main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
             android:layout_margin="10dp"
-            app:backgroundTint="#3D5AFE"
+            app:backgroundTint="@color/colorFloatButton"
             app:srcCompat="@drawable/shopping_cart_white"
-            tools:ignore="VectorDrawableCompat"/>
+            tools:ignore="VectorDrawableCompat" />
 
     </android.support.design.widget.CoordinatorLayout>
 </layout>

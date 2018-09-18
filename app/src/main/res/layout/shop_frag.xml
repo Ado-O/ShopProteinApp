@@ -42,7 +42,7 @@
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:background="@color/colorButton"
+                android:background="@color/colorCheckout"
                 android:text="@string/items_checkout_btn"
                 android:textColor="@color/colorWhite"
                 android:textSize="16dp"
@@ -59,7 +59,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-<!--TODO evernot add chain constraintLayout-->
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
@@ -68,7 +67,7 @@
                 android:layout_marginLeft="10dp"
                 android:paddingBottom="5dp"
                 android:text="@string/items_text_card"
-                android:textColor="@color/colorShop"
+                android:textColor="@color/colorFloatButton"
                 android:textSize="14dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/iv_checkout_icon"

@@ -12,13 +12,13 @@ public class DescriptionList implements Serializable {
     private String mPrice;
     private String mDiscount;
 
-    private List<ProductDescription> mNameDesc;
+    private List<ProductDescription> mDesList;
 
-    public DescriptionList(String title, String price, String discount, List<ProductDescription> nameDesc) {
+    public DescriptionList(String title, String price, String discount, List<ProductDescription> descriptionList) {
         mTitle = title;
         mPrice = price;
         mDiscount = discount;
-        mNameDesc = nameDesc;
+        mDesList = descriptionList;
     }
 
     public String getTitle() {
@@ -46,11 +46,11 @@ public class DescriptionList implements Serializable {
     }
 
     public List<ProductDescription> getNameDesc() {
-        return mNameDesc;
+        return mDesList;
     }
 
     public void setNameDesc(List<ProductDescription> nameDesc) {
-        mNameDesc = nameDesc;
+        mDesList = nameDesc;
     }
 }
 

@@ -7,6 +7,8 @@ import android.databinding.DataBindingUtil;
 import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 
 import com.example.user.lesson_android_development.R;
 import com.example.user.lesson_android_development.data.DescriptionList;
@@ -14,6 +16,7 @@ import com.example.user.lesson_android_development.data.Product;
 import com.example.user.lesson_android_development.data.ProductDescription;
 import com.example.user.lesson_android_development.data.ProductImage;
 import com.example.user.lesson_android_development.databinding.DescriptionActBinding;
+import com.example.user.lesson_android_development.main.descriptionlist.DescriptionListAdapter;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -57,6 +60,7 @@ public class DescriptionActivity extends AppCompatActivity {
         setupData();
         setupToolbar();
         setupImage();
+        setupDescriptionList();
     }
 
     /**
@@ -64,7 +68,7 @@ public class DescriptionActivity extends AppCompatActivity {
      */
     private void setupToolbar() {
         //toolbar setup
-         setSupportActionBar(mDescriptionActBinding.tlb);
+        setSupportActionBar(mDescriptionActBinding.tlb);
         //setting up the back button on the toolbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -106,11 +110,24 @@ public class DescriptionActivity extends AppCompatActivity {
 
         imageList = (List<ProductImage>) getIntent().getSerializableExtra("dscImage");
 
-            mSlideImageAdapter = new SlideImageAdapter(DescriptionActivity.this, imageList);
+        mSlideImageAdapter = new SlideImageAdapter(DescriptionActivity.this, imageList);
         mDescriptionActBinding.viewPager.setAdapter(mSlideImageAdapter);
         mDescriptionActBinding.indicator.setupWithViewPager(mDescriptionActBinding.viewPager, true);
 
     }
 
+    /**
+     * add descriptionList
+     */
+    private void setupDescriptionList() {
+        DescriptionListAdapter descriptionListAdapter = new DescriptionListAdapter(DescriptionActivity.this, Desclist);
+        mDescriptionActBinding.rvDesList.setLayoutManager(new LinearLayoutManager(
+                this,
+                LinearLayoutManager.VERTICAL,
+                false
+        ));
+        mDescriptionActBinding.rvDesList.setAdapter(descriptionListAdapter);
+
+    }
 
 }

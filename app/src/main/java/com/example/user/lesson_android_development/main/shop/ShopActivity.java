@@ -88,7 +88,6 @@ public class ShopActivity extends AppCompatActivity {
     /**
      *recive data and add in getFilterItem
      */
-    //TODO evernote onActivityResult https://stackoverflow.com/questions/20114485/use-onactivityresult-android
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

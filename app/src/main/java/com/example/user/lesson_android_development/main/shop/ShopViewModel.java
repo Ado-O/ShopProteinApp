@@ -104,9 +104,6 @@ public class ShopViewModel extends AndroidViewModel {
             }
         });
     }
-
-    //TODO onProductClickEvent
-
     public SingleLiveEvent<Product> getOpenShopEvent() {
         return mOpenShopEvent;
     }

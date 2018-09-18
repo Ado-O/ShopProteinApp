@@ -14,25 +14,5 @@ import java.util.List;
 
 public class DescriptionBinding {
 
-    @SuppressWarnings("unchecked")
-    @BindingAdapter({"app:desc"})
-    public static void setLayout(LinearLayout linearLayout, List desc) {
-
-        linearLayout.removeAllViews();
-
-        if (desc != null) {
-            LayoutInflater inflater = LayoutInflater.from(linearLayout.getContext());
-            for (ProductDescription p : ((List<ProductDescription>) desc)) {
-
-                TextView view = (TextView) inflater.inflate(
-                        R.layout.description, linearLayout, false
-                );
-
-
-                view.setText(p.getName());
-                linearLayout.addView(view);
-            }
-        }
-
-    }
+    //TODO add receyleview adapter
 }

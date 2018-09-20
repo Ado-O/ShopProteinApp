@@ -1,29 +1,21 @@
 package com.example.user.lesson_android_development.main.shop;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.user.lesson_android_development.R;
-import com.example.user.lesson_android_development.data.Tag;
 import com.example.user.lesson_android_development.databinding.ShopActBinding;
 import com.example.user.lesson_android_development.main.description.DescriptionActivity;
+import com.example.user.lesson_android_development.main.description.DescriptionBottomFragment;
 import com.example.user.lesson_android_development.main.filter.FilterActivity;
 import com.example.user.lesson_android_development.util.ActivityUtils;
 import com.example.user.lesson_android_development.util.ViewModelFactory;
-
-import static com.example.user.lesson_android_development.BR.product;
 
 
 public class ShopActivity extends AppCompatActivity {
@@ -39,7 +31,6 @@ public class ShopActivity extends AppCompatActivity {
 
         mShopViewModel = ViewModelFactory.obtainViewModel(this, ShopViewModel.class);
         mShopActBinding = DataBindingUtil.setContentView(this, R.layout.shop_act);
-
 
         //Setup
         setupToolbar();
@@ -63,7 +54,6 @@ public class ShopActivity extends AppCompatActivity {
         onBackPressed();
         return true;
     }
-
     /**
      * setting overflow menu
      */
@@ -86,7 +76,7 @@ public class ShopActivity extends AppCompatActivity {
     }
 
     /**
-     *recive data and add in getFilterItem
+     * recive data and add in getFilterItem
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -106,8 +96,8 @@ public class ShopActivity extends AppCompatActivity {
      */
     private void setupFragment() {
         ShopFragment shopFragment = (ShopFragment) getSupportFragmentManager().findFragmentById(mShopActBinding.fragShop.getId());
-        if (shopFragment == null){
-            shopFragment = ShopFragment.newInstance(getIntent().getIntExtra("id",0));
+        if (shopFragment == null) {
+            shopFragment = ShopFragment.newInstance(getIntent().getIntExtra("id", 0));
             ActivityUtils.replaceFragmentInActivity(
                     getSupportFragmentManager(), shopFragment, R.id.frag_shop
             );
@@ -121,15 +111,13 @@ public class ShopActivity extends AppCompatActivity {
 
         mShopViewModel.getOpenShopEvent().observe(ShopActivity.this, product ->
                 DescriptionActivity.startActivity(ShopActivity.this, product)
+
         );
-    }
 
-    /**
-     * FloatActionButton
-     */
-    public void onClickFAB(View view) {
-        Toast.makeText(ShopActivity.this, "Float button", Toast.LENGTH_SHORT).show();
-
+        mShopViewModel.getCardShopEvent().observe(
+                ShopActivity.this,
+                DescriptionBottomFragment::newInstance
+        );
     }
 
 }

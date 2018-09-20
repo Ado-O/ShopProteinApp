@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity(tableName = "products_table")
-public class Product implements Serializable{
+public class Product implements Parcelable{
 
     @ColumnInfo(name = "_id")
     @PrimaryKey(autoGenerate = true)
@@ -34,11 +34,12 @@ public class Product implements Serializable{
     @ColumnInfo(name = "discounte")
     private String mDiscounte;
 
+    //TODO parcable write object, and parcable vs seriazable
     @Ignore
-    private List<ProductImage> mProductImages = null;
+    private List<ProductImage> mProductImages = new ArrayList<>();
 
     @Ignore
-    private List<ProductDescription> mProductDescriptions = null;
+    private List<ProductDescription> mProductDescriptions = new ArrayList<>();
 
     @Ignore
     private List<Tag> mTags = null;
@@ -134,5 +135,45 @@ public class Product implements Serializable{
     public void setCartItems(List<CartItem> cartItems) {
         mCartItems = cartItems;
     }
+
+    protected Product(Parcel in) {
+        mId = in.readLong();
+        mTitle = in.readString();
+        mDes = in.readString();
+        mPictures = in.readString();
+        mPrice = in.readString();
+        mDiscounte = in.readString();
+       in.readList(this.mProductImages, ProductImage.class.getClassLoader());
+    in.readList(this.mProductDescriptions, ProductDescription.class.getClassLoader());
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(mId);
+        dest.writeString(mTitle);
+        dest.writeString(mDes);
+        dest.writeString(mPictures);
+        dest.writeString(mPrice);
+        dest.writeString(mDiscounte);
+        dest.writeList(mProductImages);
+        dest.writeList(mProductDescriptions);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Product> CREATOR = new Creator<Product>() {
+        @Override
+        public Product createFromParcel(Parcel in) {
+            return new Product(in);
+        }
+
+        @Override
+        public Product[] newArray(int size) {
+            return new Product[size];
+        }
+    };
 
 }

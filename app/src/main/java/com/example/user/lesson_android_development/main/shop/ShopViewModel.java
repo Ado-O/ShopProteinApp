@@ -7,6 +7,7 @@ import android.databinding.ObservableBoolean;
 import android.databinding.ObservableList;
 import android.support.annotation.NonNull;
 
+import com.example.user.lesson_android_development.data.DescriptionList;
 import com.example.user.lesson_android_development.data.Product;
 import com.example.user.lesson_android_development.data.Tag;
 import com.example.user.lesson_android_development.data.storage.ProductsRepository;
@@ -22,13 +23,11 @@ public class ShopViewModel extends AndroidViewModel {
     private final ProductsRepository mProductsRepository;
 
     public final ObservableList<Product> mProducts = new ObservableArrayList<>();
-    public final ObservableList<Product> mBestSellingItems = new ObservableArrayList<>();
 
     public final ObservableBoolean mError = new ObservableBoolean(false);
 
-
     private final SingleLiveEvent<Product> mOpenShopEvent = new SingleLiveEvent<>();
-
+    private final SingleLiveEvent<Product> mCardShopEvent = new SingleLiveEvent<>();
 
     public ShopViewModel(@NonNull Application application,
                          ProductsRepository productsRepository) {
@@ -41,11 +40,11 @@ public class ShopViewModel extends AndroidViewModel {
      * product
      */
     public void startProduct(long tadId) {
-       if (mProducts.isEmpty()) {
+        if (mProducts.isEmpty()) {
             getProducts();
         } else {
-           getFilterItem(tadId);
-       }
+            getFilterItem(tadId);
+        }
     }
 
     private void getProducts() {
@@ -63,32 +62,6 @@ public class ShopViewModel extends AndroidViewModel {
         });
     }
 
-    /**
-     * bestSelling
-     */
-    public void startBestSelling() {
-        if (mBestSellingItems.isEmpty()) {
-            getBestSelling();
-        }
-    }
-
-    private void getBestSelling() {
-        mProductsRepository.getMostSoldItem(new ProductsRepository.GetMostSoldItem() {
-            @Override
-            public void onSuccess(List<Product> products) {
-                mBestSellingItems.clear();
-                mBestSellingItems.addAll(products);
-                mError.set(mBestSellingItems.isEmpty());
-            }
-
-            @Override
-            public void onError() {
-
-            }
-        });
-    }
-
-
     public void getFilterItem(long tagId) {
         mProductsRepository.getFilteredProducts(tagId, new ProductsRepository.GetFilterCallback() {
             @Override
@@ -104,8 +77,9 @@ public class ShopViewModel extends AndroidViewModel {
             }
         });
     }
-    public SingleLiveEvent<Product> getOpenShopEvent() {
-        return mOpenShopEvent;
-    }
+
+    public SingleLiveEvent<Product> getOpenShopEvent() { return mOpenShopEvent; }
+
+    public SingleLiveEvent<Product> getCardShopEvent(){ return mCardShopEvent; }
 }
 

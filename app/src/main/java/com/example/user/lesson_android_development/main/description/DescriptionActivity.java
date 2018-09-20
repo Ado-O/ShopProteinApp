@@ -5,47 +5,38 @@ import android.app.Activity;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Paint;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
+import android.view.View;
 
 import com.example.user.lesson_android_development.R;
 import com.example.user.lesson_android_development.data.DescriptionList;
 import com.example.user.lesson_android_development.data.Product;
-import com.example.user.lesson_android_development.data.ProductDescription;
-import com.example.user.lesson_android_development.data.ProductImage;
 import com.example.user.lesson_android_development.databinding.DescriptionActBinding;
 import com.example.user.lesson_android_development.main.descriptionlist.DescriptionListAdapter;
+import com.example.user.lesson_android_development.main.shop.ShopViewModel;
+import com.example.user.lesson_android_development.util.ActivityUtils;
+import com.example.user.lesson_android_development.util.ViewModelFactory;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 
-public class DescriptionActivity extends AppCompatActivity {
+public class DescriptionActivity extends AppCompatActivity{
 
     private static final String TAG = DescriptionActivity.class.getSimpleName();
 
     private SlideImageAdapter mSlideImageAdapter;
     private DescriptionActBinding mDescriptionActBinding;
-
-    private String mImg, mNam, mDsc, mPrc;
-
-    private List<ProductDescription> Desclist = new ArrayList<ProductDescription>();
-    private List<ProductImage> imageList = new ArrayList<>();
-
+    private Product p;
+    private ShopViewModel mShopViewModel;
+    private long tadId = 0;
 
     public static void startActivity(Activity activity, Product product) {
 
         Intent intent = new Intent(activity, DescriptionActivity.class);
-        intent.putExtra("image", product.getPictures());
-        intent.putExtra("name", product.getTitle());
-        intent.putExtra("discount", product.getDiscounte());
-        intent.putExtra("price", product.getPrice());
-        intent.putExtra("dscList", (Serializable) product.getProductDescriptions());
-        intent.putExtra("dscImage", (Serializable) product.getProductImages());
-
+        intent.putExtra("product", product);
         activity.startActivity(intent);
 
     }
@@ -56,6 +47,11 @@ public class DescriptionActivity extends AppCompatActivity {
         setContentView(R.layout.description_act);
 
         mDescriptionActBinding = DataBindingUtil.setContentView(this, R.layout.description_act);
+
+        mShopViewModel = ViewModelFactory.obtainViewModel(this, ShopViewModel.class);
+        mShopViewModel.startProduct(tadId);
+
+        p = getIntent().getExtras().getParcelable("product");
 
         setupData();
         setupToolbar();
@@ -88,13 +84,12 @@ public class DescriptionActivity extends AppCompatActivity {
      */
     private void setupData() {
 
-        mNam = getIntent().getExtras().getString("name");
-        mDsc = getIntent().getExtras().getString("discount");
-        mPrc = getIntent().getExtras().getString("price");
-        mImg = getIntent().getExtras().getString("image");
-        Desclist = (List<ProductDescription>) getIntent().getSerializableExtra("dscList");
-
-        DescriptionList descriptionList = new DescriptionList(mNam, mPrc, mDsc, Desclist);
+        DescriptionList descriptionList = new DescriptionList(
+                p.getTitle(),
+                p.getPrice(),
+                p.getDiscounte(),
+                p.getProductDescriptions()
+        );
         mDescriptionActBinding.setDescriptionList(descriptionList);
 
         //strikethrough discount
@@ -108,9 +103,7 @@ public class DescriptionActivity extends AppCompatActivity {
      */
     private void setupImage() {
 
-        imageList = (List<ProductImage>) getIntent().getSerializableExtra("dscImage");
-
-        mSlideImageAdapter = new SlideImageAdapter(DescriptionActivity.this, imageList);
+        mSlideImageAdapter = new SlideImageAdapter(DescriptionActivity.this, p.getProductImages());
         mDescriptionActBinding.viewPager.setAdapter(mSlideImageAdapter);
         mDescriptionActBinding.indicator.setupWithViewPager(mDescriptionActBinding.viewPager, true);
 
@@ -120,7 +113,7 @@ public class DescriptionActivity extends AppCompatActivity {
      * add descriptionList
      */
     private void setupDescriptionList() {
-        DescriptionListAdapter descriptionListAdapter = new DescriptionListAdapter(DescriptionActivity.this, Desclist);
+        DescriptionListAdapter descriptionListAdapter = new DescriptionListAdapter(DescriptionActivity.this, p.getProductDescriptions());
         mDescriptionActBinding.rvDesList.setLayoutManager(new LinearLayoutManager(
                 this,
                 LinearLayoutManager.VERTICAL,
@@ -129,5 +122,6 @@ public class DescriptionActivity extends AppCompatActivity {
         mDescriptionActBinding.rvDesList.setAdapter(descriptionListAdapter);
 
     }
+
 
 }

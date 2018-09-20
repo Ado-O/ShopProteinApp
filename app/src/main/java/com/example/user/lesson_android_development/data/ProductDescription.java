@@ -10,7 +10,7 @@ import android.os.Parcelable;
 import java.io.Serializable;
 
 @Entity(tableName = "productdescription_table")
-public class ProductDescription implements Serializable{
+public class ProductDescription implements Parcelable{
 
     @ColumnInfo(name = "_id")
     @PrimaryKey(autoGenerate = true)
@@ -31,7 +31,6 @@ public class ProductDescription implements Serializable{
         mName = name;
         mDescription = description;
     }
-
     @Ignore
     public ProductDescription(long productId, String name, String description) {
         mId = null;
@@ -72,33 +71,44 @@ public class ProductDescription implements Serializable{
         mDescription = description;
     }
 
-//    @Override
-//    public int describeContents() {
-//        return 0;
-//    }
-//
-//    @Override
-//    public void writeToParcel(Parcel dest, int flags) {
-//        dest.writeLong(mProductId);
-//        dest.writeString(mName);
-//        dest.writeString(mDescription);
-//    }
-//
-//    public static final Parcelable.Creator<ProductDescription> CREATOR = new Parcelable.Creator<ProductDescription>() {
-//        @Override
-//        public ProductDescription createFromParcel(Parcel source) {
-//            return new ProductDescription(source);
-//        }
-//
-//        @Override
-//        public ProductDescription[] newArray(int size) {
-//            return new ProductDescription[size];
-//        }
-//    };
-//
-//    private ProductDescription(Parcel in) {
-//        mName = in.readString();
-//        mProductId = in.readLong();
-//        mDescription = in.readString();
-//    }
+    protected ProductDescription(Parcel in) {
+        if (in.readByte() == 0) {
+            mId = null;
+        } else {
+            mId = in.readInt();
+        }
+        mProductId = in.readLong();
+        mName = in.readString();
+        mDescription = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        if (mId == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(mId);
+        }
+        dest.writeLong(mProductId);
+        dest.writeString(mName);
+        dest.writeString(mDescription);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<ProductDescription> CREATOR = new Creator<ProductDescription>() {
+        @Override
+        public ProductDescription createFromParcel(Parcel in) {
+            return new ProductDescription(in);
+        }
+
+        @Override
+        public ProductDescription[] newArray(int size) {
+            return new ProductDescription[size];
+        }
+    };
 }

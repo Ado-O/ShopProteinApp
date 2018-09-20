@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import java.io.Serializable;
 import java.util.List;
 
-public class DescriptionList implements Serializable {
+public class DescriptionList implements Parcelable {
 
     private String mTitle;
     private String mPrice;
@@ -52,6 +52,39 @@ public class DescriptionList implements Serializable {
     public void setNameDesc(List<ProductDescription> nameDesc) {
         mDesList = nameDesc;
     }
+
+    protected DescriptionList(Parcel in) {
+        mTitle = in.readString();
+        mPrice = in.readString();
+        mDiscount = in.readString();
+        mDesList = in.createTypedArrayList(ProductDescription.CREATOR);
+
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(mTitle);
+        dest.writeString(mPrice);
+        dest.writeString(mDiscount);
+        dest.writeTypedList(mDesList);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<DescriptionList> CREATOR = new Creator<DescriptionList>() {
+        @Override
+        public DescriptionList createFromParcel(Parcel in) {
+            return new DescriptionList(in);
+        }
+
+        @Override
+        public DescriptionList[] newArray(int size) {
+            return new DescriptionList[size];
+        }
+    };
 }
 
 

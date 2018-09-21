@@ -5,16 +5,6 @@
 
     <data>
 
-        <import type="android.view.View.OnClickListener" />
-
-        <variable
-            name="listener"
-            type="com.example.user.lesson_android_development.util.RecyclerViewClickListener" />
-
-        <variable
-            name="product"
-            type="com.example.user.lesson_android_development.data.Product" />
-
         <variable
             name="descriptionList"
             type="com.example.user.lesson_android_development.data.DescriptionList" />
@@ -64,7 +54,6 @@
             </android.support.design.widget.CollapsingToolbarLayout>
 
         </android.support.design.widget.AppBarLayout>
-
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -142,7 +131,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
             android:layout_margin="10dp"
-            android:onClick="@{(view)-> listener.recyclerViewListClickedFAB(view, product)}"
+            android:onClick="clickFAB"
             app:backgroundTint="@color/colorFloatButton"
             app:srcCompat="@drawable/shopping_cart_white"
             tools:ignore="VectorDrawableCompat" />

@@ -87,9 +87,6 @@ public class ShopFragment extends Fragment implements RecyclerViewClickListener 
     public void recyclerViewListClickedFAB(View v, Product product) {
         mMainViewModelProduct.getCardShopEvent().setValue(product);
 
-        BottomSheetDialogFragment bottomSheetDialogFragment = new DescriptionBottomFragment();
-        bottomSheetDialogFragment.show(getFragmentManager(), "Bottom Sheet Dialog Fragment");
 
     }
-
 }

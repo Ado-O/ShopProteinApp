@@ -34,7 +34,6 @@ public class Product implements Parcelable{
     @ColumnInfo(name = "discounte")
     private String mDiscounte;
 
-    //TODO parcable write object, and parcable vs seriazable
     @Ignore
     private List<ProductImage> mProductImages = new ArrayList<>();
 

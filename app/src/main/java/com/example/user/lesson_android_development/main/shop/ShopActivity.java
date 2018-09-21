@@ -1,15 +1,20 @@
 package com.example.user.lesson_android_development.main.shop;
 
+import android.arch.lifecycle.Observer;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.user.lesson_android_development.R;
+import com.example.user.lesson_android_development.data.Product;
 import com.example.user.lesson_android_development.databinding.ShopActBinding;
 import com.example.user.lesson_android_development.main.description.DescriptionActivity;
 import com.example.user.lesson_android_development.main.description.DescriptionBottomFragment;
@@ -54,6 +59,7 @@ public class ShopActivity extends AppCompatActivity {
         onBackPressed();
         return true;
     }
+
     /**
      * setting overflow menu
      */
@@ -116,8 +122,16 @@ public class ShopActivity extends AppCompatActivity {
 
         mShopViewModel.getCardShopEvent().observe(
                 ShopActivity.this,
-                DescriptionBottomFragment::newInstance
+                new Observer<Product>() {
+                    @Override
+                    public void onChanged(@Nullable Product product) {
+
+                        BottomSheetDialogFragment bottomSheetDialogFragment = DescriptionBottomFragment.newInstance(product);
+                        bottomSheetDialogFragment.show(getSupportFragmentManager(), "Bottom Sheet Dialog Fragment");
+                    }
+                }
         );
     }
+
 
 }

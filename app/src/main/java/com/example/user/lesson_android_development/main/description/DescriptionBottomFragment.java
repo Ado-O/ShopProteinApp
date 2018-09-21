@@ -33,16 +33,13 @@ public class DescriptionBottomFragment extends BottomSheetDialogFragment {
     private DescriptionBottomSheetBinding mDescriptionBottomSheetBinding;
     private int mNumber = 1;
     boolean mSelected;
-    private Product product;
-
+    Product product;
 
     public static DescriptionBottomFragment newInstance(Product product) {
 
         DescriptionBottomFragment bottomSheetFragment = new DescriptionBottomFragment();
         Bundle b = new Bundle();
         b.putParcelable(PRODUCT_ITEM, product);
-
-        Log.e(TAG, product.getTitle());
 
         bottomSheetFragment.setArguments(b);
 
@@ -54,9 +51,7 @@ public class DescriptionBottomFragment extends BottomSheetDialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mDescriptionBottomSheetBinding = DescriptionBottomSheetBinding.inflate(inflater, container, false);
 
-//        product = (Product) getArguments().getParcelable(PRODUCT_ITEM);
-//            Log.e(TAG, (product.getPrice()));
-
+        product = (Product) getArguments().getParcelable(PRODUCT_ITEM);
 
         getDataSetup();
         getQuantitySetup();
@@ -83,17 +78,19 @@ public class DescriptionBottomFragment extends BottomSheetDialogFragment {
         return dialog;
     }
 
-    public void getDataSetup() {
+    public void getDataSetup(){
 
-//        Glide.with(getActivity())
-//                .load(p.getPictures())
-//                .into(mDescriptionBottomSheetBinding.ivProduct);
-//        mDescriptionBottomSheetBinding.tvTitle.setText(p.getTitle());
-//        mDescriptionBottomSheetBinding.tvDiscount.setText(p.getDiscounte());
-//        mDescriptionBottomSheetBinding.tvPrice.setText(p.getPrice());
+        Glide.with(getActivity())
+                .load(product.getPictures())
+                .into(mDescriptionBottomSheetBinding.ivProduct);
+
+        mDescriptionBottomSheetBinding.tvTitle.setText(product.getTitle());
+        mDescriptionBottomSheetBinding.tvPrice.setText(product.getPrice());
+        mDescriptionBottomSheetBinding.tvDiscount.setText(product.getDiscounte());
     }
 
     public void getQuantitySetup() {
+        //TODO plus minus logic
         mDescriptionBottomSheetBinding.number.setText("" + mNumber);
 
         //plus

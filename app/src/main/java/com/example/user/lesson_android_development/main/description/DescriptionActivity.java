@@ -5,11 +5,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Paint;
-import android.os.Parcelable;
+import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.View;
 
 import com.example.user.lesson_android_development.R;
@@ -18,12 +17,10 @@ import com.example.user.lesson_android_development.data.Product;
 import com.example.user.lesson_android_development.databinding.DescriptionActBinding;
 import com.example.user.lesson_android_development.main.descriptionlist.DescriptionListAdapter;
 import com.example.user.lesson_android_development.main.shop.ShopViewModel;
-import com.example.user.lesson_android_development.util.ActivityUtils;
 import com.example.user.lesson_android_development.util.ViewModelFactory;
 
 
-
-public class DescriptionActivity extends AppCompatActivity{
+public class DescriptionActivity extends AppCompatActivity {
 
     private static final String TAG = DescriptionActivity.class.getSimpleName();
 
@@ -122,6 +119,10 @@ public class DescriptionActivity extends AppCompatActivity{
         mDescriptionActBinding.rvDesList.setAdapter(descriptionListAdapter);
 
     }
+//TODO check if you have in evernote BottomSHeetDIalogFragment
 
-
+    public void clickFAB(View view) {
+        BottomSheetDialogFragment bottomSheetDialogFragment = DescriptionBottomFragment.newInstance(p);
+        bottomSheetDialogFragment.show(getSupportFragmentManager(), "Bottom Sheet Dialog Fragment");
+    }
 }
